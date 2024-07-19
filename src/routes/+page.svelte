@@ -124,6 +124,3 @@
         text-decoration: none;
     }
 </style>
-
-
-export const prerender = true;
