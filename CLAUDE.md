@@ -26,7 +26,7 @@ There is no separate lint-fix script for ESLint issues; only `format` auto-fixes
 ## Architecture
 
 - **Framework**: Vite + React (function components, no router). The whole site is a single page rendered client-side — there is no server-side backend or API.
-- **Build output**: `vite.config.ts` sets `build.outDir` to `docs/` (not the default `dist/`) so GitHub Pages can serve directly from that folder. In production the base path is `/solaris/` (`base` in `vite.config.ts`, driven by `NODE_ENV`, which Vite sets automatically for `build`/`preview`). Because of this, `vite preview` serves the app under `/solaris/` and redirects `/` there.
+- **Build output**: `vite.config.ts` sets `build.outDir` to `docs/` (not the default `dist/`) so GitHub Pages can serve directly from that folder. `base` is set to `'./'` (relative) so the build's asset URLs work unmodified whether served from the custom domain root (https://solarisli.dev/) or a subpath — do not change this to an absolute base like `/solaris/`; the site is deployed at the domain root, and absolute-prefixed asset paths 404 there, leaving a blank page.
 - **Entry point**: `index.html` (project root, Vite convention) loads `src/main.tsx`, which mounts `src/App.tsx` into `#root`.
 - **Single component tree**: `src/App.tsx` renders the entire page — namebar, socials, jobs, projects, footer.
 - **Background effect**: The Vanta "NET" effect (from `vanta/dist/vanta.net.min`) is dynamically imported and initialized in a `useEffect` in `App.tsx`, bound to the `#main` div ref, and torn down on cleanup. Its ambient module types (no upstream types exist for this import path) are declared in `src/vite-env.d.ts`.
