@@ -1,6 +1,7 @@
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
-import svelte from 'eslint-plugin-svelte';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 import prettier from 'eslint-config-prettier';
 import globals from 'globals';
 
@@ -8,9 +9,9 @@ import globals from 'globals';
 export default [
 	js.configs.recommended,
 	...ts.configs.recommended,
-	...svelte.configs['flat/recommended'],
+	reactHooks.configs['recommended-latest'],
+	reactRefresh.configs.vite,
 	prettier,
-	...svelte.configs['flat/prettier'],
 	{
 		languageOptions: {
 			globals: {
@@ -20,14 +21,6 @@ export default [
 		}
 	},
 	{
-		files: ['**/*.svelte'],
-		languageOptions: {
-			parserOptions: {
-				parser: ts.parser
-			}
-		}
-	},
-	{
-		ignores: ['build/', '.svelte-kit/', 'dist/']
+		ignores: ['docs/', 'dist/']
 	}
 ];
