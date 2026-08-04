@@ -4,7 +4,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
 	plugins: [react(), tailwindcss()],
-	base: process.env.NODE_ENV === 'production' ? '/solaris/' : '/',
+	// Relative base so the build works whether served from the domain root
+	// (solarisli.dev) or a subpath (e.g. a GitHub Pages project URL).
+	base: './',
 	build: {
 		outDir: 'docs'
 	}
