@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+
+* {
+	margin: 0;
+	font-family: Arial;
+	color: #f2e9e4;
+	box-sizing: border-box;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+::-webkit-scrollbar-track {
+	background: #151525;
+}
+::-webkit-scrollbar-thumb {
+	background: #343457;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #4a4a75;
+}
